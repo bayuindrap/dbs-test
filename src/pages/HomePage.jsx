@@ -29,7 +29,6 @@ class HomePage extends React.Component {
             <div>
                 <h1>TEST HOMEPAGE</h1>
           
-                
             </div>
          );
     }
