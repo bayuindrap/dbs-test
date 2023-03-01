@@ -1,0 +1,12 @@
+{
+    "dataUser": [
+        {
+            "name": "naruto",
+            "eKTP": 123456,
+            "Address": "konoha",
+            "job": "hokage",
+            "dob": "22 Maret 1998",
+            "phone": 121244555
+        }
+    ]
+}
