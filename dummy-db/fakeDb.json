@@ -3,10 +3,20 @@
         {
             "name": "naruto",
             "eKTP": 123456,
-            "Address": "konoha",
+            "address": "konoha",
             "job": "hokage",
             "dob": "22 Maret 1998",
-            "phone": 121244555
+            "phone": 121244555,
+            "phone2": 21412412
+        },
+        {
+            "name": "boruto",
+            "eKTP": 123456,
+            "address": "amegakure",
+            "job": "raikage",
+            "dob": "22 Maret 1912",
+            "phone": 1212412,
+            "phone2": 125325
         }
     ]
 }
