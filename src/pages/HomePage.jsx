@@ -1,6 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-import { API_URL } from "../helper";
 import { Button, Table } from "reactstrap";
 import { connect } from 'react-redux';
 import { userAction } from '../redux/actions';
@@ -20,23 +18,12 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    // this.getUser(),
     this.props.userAction()
   }
 
-  // getUser = () => {
-  //   axios.get(`${API_URL}/dataUser`)
-  //     .then((res) => {
-  //       // console.log("test data user", res.data)
-  //       this.setState({ userList: res.data })
-  //     }).catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
-
 
   printTable = () => {
-    return this.props.userList.map((value, index) => {
+    return this.props.userList.map((value) => {
       return <div style={{ padding: 50 }}>
 
         <Table
@@ -92,7 +79,7 @@ class HomePage extends React.Component {
 
     return (
       <div>
-        <h1>TEST HOMEPAGE</h1>
+        <h1>HOMEPAGE</h1>
         <div>
           <div style={{}}>
             <Link to={"/new-user"}>
