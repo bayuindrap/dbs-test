@@ -10,6 +10,12 @@ export const userReducer = (state = INITIAL_STATE, action) => {
             ...state,
             userList: action.payload
         }
+        case "REGISTER_SUCCESS" :
+            console.log("regis reducer", action.payload)
+            return {
+                ...state,
+                userList: action.payload
+            }
         default :
         return state
    }

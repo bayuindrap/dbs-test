@@ -3,6 +3,9 @@ import React from 'react';
 import { FormGroup, Label, Input, Button, Col, Form, Table } from "reactstrap";
 import Swal from "sweetalert2";
 import { API_URL } from '../helper';
+import { userRegis } from '../redux/actions';
+import { connect } from 'react-redux';
+
 
 
 class NewUser extends React.Component {
@@ -13,7 +16,41 @@ class NewUser extends React.Component {
         }
     }
 
-    btnSubmit = () => {
+    // btnSubmit = () => {
+    //     if (this.nameRegis.value === "" || this.eKTPRegis.value  === "" || this.addressRegis.value === "" ||
+    //      this.jobRegis.value === "" || this.dobRegis.value === "" || this.phoneRegis.value === "" || 
+    //      this.phoneRegiz.value === ""){
+    //         // validation
+    //         Swal.fire(
+    //             "Regis warning",
+    //             "Please fill all the empty input",
+    //             "warning"
+    //         )
+    //      } else {
+    //         axios.post(`${API_URL}/dataUser`, {
+    //             name: this.nameRegis.value,
+    //             eKTP: this.eKTPRegis.value,
+    //             address: this.addressRegis.value,
+    //             job: this.jobRegis.value,
+    //             dob: this.dobRegis.value,
+    //             phone: this.phoneRegis.value,
+    //             phonez: this.phoneRegiz.value,
+    //         }).then((res) => {
+    //             console.log("regis", res)
+    //             Swal.fire({
+    //                 position: 'top-end',
+    //                 icon: 'success',
+    //                 title: 'Data has been saved',
+    //                 showConfirmButton: false,
+    //                 timer: 1500
+    //               })
+    //         }).catch ((error) => {
+    //             console.log(error)
+    //         })
+    //      }
+    // }
+
+    btnSubmit = async () => {
         if (this.nameRegis.value === "" || this.eKTPRegis.value  === "" || this.addressRegis.value === "" ||
          this.jobRegis.value === "" || this.dobRegis.value === "" || this.phoneRegis.value === "" || 
          this.phoneRegiz.value === ""){
@@ -24,7 +61,7 @@ class NewUser extends React.Component {
                 "warning"
             )
          } else {
-            axios.post(`${API_URL}/dataUser`, {
+            let newUser = {
                 name: this.nameRegis.value,
                 eKTP: this.eKTPRegis.value,
                 address: this.addressRegis.value,
@@ -32,18 +69,16 @@ class NewUser extends React.Component {
                 dob: this.dobRegis.value,
                 phone: this.phoneRegis.value,
                 phonez: this.phoneRegiz.value,
-            }).then((res) => {
-                console.log("regis", res)
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Data has been saved',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            }).catch ((error) => {
-                console.log(error)
-            })
+            }
+            let temp = [...this.props.userList]
+            temp.push(newUser)
+            if (this.props.name) {
+                let res = await this.props.userRegis(temp)
+                if(res.success) {
+                    alert("regis berhasil")
+                }
+            }
+            
          }
     }
 
@@ -202,4 +237,11 @@ class NewUser extends React.Component {
     }
 }
 
-export default NewUser;
+const mapToProps = (state) => {
+    console.table("test", state.userReducer.userList)
+    return {
+        userList: state.userReducer.userList
+    }
+}
+
+export default connect (mapToProps, {userRegis})(NewUser);
